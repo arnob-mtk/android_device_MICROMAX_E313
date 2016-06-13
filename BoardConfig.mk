@@ -8,6 +8,10 @@ TARGET_SPECIFIC_HEADER_PATH := device/MICROMAX/E313/include
 TARGET_BOARD_PLATFORM := mt6592
 TARGET_NO_BOOTLOADER := true
 
+# Enable dex-preoptimization
+ WITH_DEXPREOPT := true
+ DONT_DEXPREOPT_PREBUILTS := true
+
 # Architecture
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
