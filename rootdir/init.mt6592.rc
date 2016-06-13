@@ -13,11 +13,24 @@ on charger
 on init
     export LD_PRELOAD "libxlog.so"
 
-    # By default, primary storage is physical
-    setprop ro.vold.primary_physical 1
+    # See storage config details at http://source.android.com/tech/storage/
+    mkdir /storage/sdcard 0555 root root
+ 
+# Support legacy paths
+    symlink storage/sdcard /sdcard
+    symlink storage/sdcard /mnt/sdcard
 
-    symlink /sdcard /mnt/sdcard
-    symlink /sdcard /storage/sdcard0
+
+
+
+
+
+
+
+# By default, primary storage is physical
+    
+    mkdir /protect_f 0771 system system
+    mkdir /protect_s 0771 system system
 
     chown system graphics /dev/ion
     chmod 0644 /dev/ion
@@ -548,6 +561,11 @@ service geomagneticd /system/bin/geomagneticd
     
 service mc64xxd /system/bin/mc64xxd
     disabled
+    user system
+    group system
+    class main
+
+service bmc056bmg160d /system/bin/bmc056bmg160d
     user system
     group system
     class main
